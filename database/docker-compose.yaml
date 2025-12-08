@@ -1,0 +1,17 @@
+services:
+  database:
+    image: postgres:18.1-alpine
+    container_name: todo-postgres
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    volumes:
+      - todo_pgdata:/var/lib/postgresql/data
+    environment:
+      TZ: America/Sao_Paulo
+      POSTGRES_DB: todo_list_db
+      POSTGRES_USER: adm
+      POSTGRES_PASSWORD: adm
+volumes:
+  todo_pgdata:
+    driver: local
