@@ -5,24 +5,20 @@ import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import jakarta.persistence.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Task {
+public class TodoList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-    private String description;
-    private boolean completed;
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "todo_list_id")
-    @JsonIgnore
-    private TodoList todoList;
+    @OneToMany(mappedBy = "todoList")
+    private List<Task> tasks;
 }

@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: Gustavo-kohler
+      changes:
+        - createTable:
+            tableName: todo_list
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - addColumn:
+            tableName: task
+            columns:
+              - column:
+                  name: todo_list_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_task_todo_list
+                    references: todo_list(id)
